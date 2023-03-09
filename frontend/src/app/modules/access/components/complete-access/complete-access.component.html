@@ -1,0 +1,41 @@
+
+
+<div class="text-gray-900 bg-gray-200" >
+    <div class="flex justify-between items-center px-4 py-2">
+        <h1 class="text-xl">Accesos Completados</h1>
+      
+        
+    </div>
+
+
+    <div class="px-3 py-4 flex justify-center">
+        <table class="w-full text-md bg-white shadow-md rounded mb-4">
+            <tbody>
+                <tr class="border-b">
+                    <th class="text-left p-3 px-5">Placa</th>
+                    <th class="text-left p-3 px-5">Tipo de Vehiculo</th>
+                    <th class="text-left p-3 px-5">Entrada</th>
+                    <th class="text-left p-3 px-5">Salidad</th>
+                    <th class="text-left p-3 px-5">Tiempo Estacionado (min)</th>
+                    <th class="text-left p-3 px-5">Pago</th>
+                    <th></th>
+                </tr>
+                <tr class="border-b hover:bg-orange-100 bg-gray-100" *ngFor="let access of completeAccess" >
+                    <td class="p-3 px-5">
+                        <p>{{access.vehicle.plate}}</p>
+                    </td>
+                    <td class="p-3 px-5">
+                        <p>{{access.vehicle.vehicle_type.vehicle_type}}</p>
+                    </td>
+                    <td class="p-3 px-5">
+                        <p>{{access.from}}</p>
+                    </td>
+                    <td class="p-3 px-5">{{access.to}}</td>
+                    <td class="p-3 px-5">{{access.minutes}} minutos</td>
+                    <td class="p-3 px-5">{{access.pay}}</td>
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

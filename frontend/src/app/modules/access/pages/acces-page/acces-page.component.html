@@ -1,0 +1,33 @@
+
+<div class="text-gray-900 bg-gray-200" >
+    <div class="flex justify-between items-center px-4 py-2">
+        <h1 class="text-3xl">Accesos</h1>
+        <select
+        type="text"
+        name=""
+        class="w-medium p-2 bg-white border border-gray-200 rounded shadow-sm appearance-none"
+        id=""
+        [(ngModel)]="optionSelecte" (change)="changeOption()"
+       >
+      
+        <option value="incomplete">Incompletas</option> 
+        <option value="complete">Completas de hoy</option> 
+        </select>
+        <button type="button"
+            class="text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+           >
+            Agregar
+        </button>
+        
+        
+    </div>
+    <div *ngIf='!showIncompleteAccess'>
+        <app-complete-access />
+    </div>
+    <div *ngIf="showIncompleteAccess">
+        <app-icomplete-access />
+    </div>
+
+
+   
+</div>

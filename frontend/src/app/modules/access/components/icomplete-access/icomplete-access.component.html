@@ -1,0 +1,37 @@
+
+
+<div class="text-gray-900 bg-gray-200" >
+    <div class="flex justify-between items-center px-4 py-2">
+        <h1 class="text-xl">Vehiculos Estacionados</h1>
+      
+        
+    </div>
+
+
+    <div class="px-3 py-4 flex justify-center">
+        <table class="w-full text-md bg-white shadow-md rounded mb-4">
+            <tbody>
+                <tr class="border-b">
+                    <th class="text-left p-3 px-5">Placa</th>
+                    <th class="text-left p-3 px-5">Tipo de Vehiculo</th>
+                    <th class="text-left p-3 px-5">Hora Entrada</th>
+
+                    <th></th>
+                </tr>
+                <tr class="border-b hover:bg-orange-100 bg-gray-100" *ngFor="let access of incompleteAccess" >
+                    <td class="p-3 px-5">
+                        <p>{{access.vehicle.plate}}</p>
+                    </td>
+                    <td class="p-3 px-5">
+                        <p>{{access.vehicle.vehicle_type.vehicle_type}}</p>
+                    </td>
+                    <td class="p-3 px-5">
+                        <p>{{access.from}}</p>
+                    </td>
+               
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
