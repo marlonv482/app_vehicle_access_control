@@ -30,12 +30,12 @@ class CutsController extends Controller
                 unset($vehicles[$key]);
             }
         }
-        $cut->status=0;
-        $cut->save();
-        $cut=new Cuts();
-        $cut->status=1;
-        $cut->vehicle_type_id=$vehicle_type->id;
-        $cut->save();
+       // $cut->status=0;
+       // $cut->save();
+       // $cut=new Cuts();
+       // $cut->status=1;
+       // $cut->vehicle_type_id=$vehicle_type->id;
+        //$cut->save();
         return response()
         ->json(
             [
@@ -60,12 +60,12 @@ class CutsController extends Controller
                 unset($vehicles[$key]);
             }
         }
-        $cut->status=0;
-        $cut->save();
-        $cut=new Cuts();
-        $cut->status=1;
-        $cut->vehicle_type_id=$vehicle_type->id;
-        $cut->save();
+        //$cut->status=0;
+        //$cut->save();
+       // $cut=new Cuts();
+       // $cut->status=1;
+        //$cut->vehicle_type_id=$vehicle_type->id;
+       // $cut->save();
         return response()
         ->json(
             [

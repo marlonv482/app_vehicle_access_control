@@ -29,7 +29,7 @@ export class AddVehicleTypeComponent {
         Validators.required,
         
       ]),
-      price_per_minute:new FormControl(2, [
+      price_per_minute:new FormControl('', [
         Validators.required,
       ])
     })
