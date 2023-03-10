@@ -1,15 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { VehicleModel } from 'src/app/core/models/vehicle.model';
-import { enviroment } from 'src/enviroments/enviroment';
-@Injectable({
+import { environment } from 'src/environments/environment';@Injectable({
   providedIn: 'root'
 })
 export class VehiclesService {
-  private readonly URL=enviroment.api;
+  private readonly URL=environment.api;
   private vehicleSelected!: VehicleModel;
-constructor(private http:HttpClient){
+constructor(private http:HttpClient,private cookie:CookieService){
 
 }
   $addVehicleModal=new EventEmitter<any>();
@@ -17,7 +17,9 @@ constructor(private http:HttpClient){
   $vehicleSelected=new EventEmitter<VehicleModel>;
 
   getAllVehicles():Observable<any>{
-    return this.http.get(`${this.URL}/vehicles/getAllVehicles`).pipe(
+    const token=this.cookie.get('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.URL}/vehicles/getAllVehicles`,{headers}).pipe(
       map((dataRow:any)=>{
         return dataRow.vehicles
       })
@@ -25,7 +27,9 @@ constructor(private http:HttpClient){
   }
   
   getVehicleById(id:number):Observable<any>{
-    return this.http.get(`${this.URL}/vehicles/getVehicleById/${id}`).pipe(
+    const token=this.cookie.get('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.URL}/vehicles/getVehicleById/${id}`,{headers}).pipe(
       map((dataRow:any)=>{
         return dataRow.vehicles
       }),
@@ -36,8 +40,9 @@ constructor(private http:HttpClient){
     );
   }
   addVehicle(vehicle:any):Observable<any>{
-    
-    return this.http.post(`${this.URL}/vehicles/addVehicle`,vehicle).pipe(
+    const token=this.cookie.get('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.URL}/vehicles/addVehicle`,vehicle,{headers}).pipe(
       map((dataRow:any)=>{
         return dataRow.vehicle
       }),

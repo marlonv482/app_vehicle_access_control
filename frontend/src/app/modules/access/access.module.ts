@@ -29,6 +29,7 @@ import { InfoAccessModalComponent } from './modals/info-access-modal/info-access
     FormsModule ,
     ReactiveFormsModule,
     SharedModule
-  ]
+  ],
+  
 })
 export class AccessModule { }

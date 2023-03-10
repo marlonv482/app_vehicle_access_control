@@ -59,7 +59,7 @@ const fechaFormateada = fecha.toLocaleString('es-ES');
           
             // keepWithHeaderRows: 1,
             body: [
-              [{text: 'Num. Placa', style: 'tableHeader'}, {text: 'Tiempo estacionado (min)', style: 'tableHeader', }, {text: 'Cantidad a pagar', style: 'tableHeader', alignment: 'center'}],
+              [{text: 'Num. Placa', style: 'tableHeader'}, {text: 'Tiempo estacionado (min)', style: 'tableHeader', }, {text: 'Cantidad a pagar ($)', style: 'tableHeader', alignment: 'center'}],
               
             
             ]

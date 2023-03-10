@@ -1,21 +1,23 @@
-import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
-import { enviroment } from 'src/enviroments/enviroment';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class VehicleTypesService {
-  private readonly URL=enviroment.api;
+  private readonly URL=environment.api;
 
   $addVehicleTypeModal=new EventEmitter<any>();
   
-  constructor(private http:HttpClient){
+  constructor(private http:HttpClient,private cookie:CookieService){
   
   }
   getAllVehicleTypes():Observable<any>{
-    return this.http.get(`${this.URL}/vehicleTypes/getAllVehicleTypes`).pipe(
+    const token=this.cookie.get('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(`${this.URL}/vehicleTypes/getAllVehicleTypes`,{headers}).pipe(
       map((dataRow:any)=>{
         return dataRow.vehicleTypes
       }),
@@ -26,7 +28,9 @@ export class VehicleTypesService {
     );
   }
   addVehicleType(vehicleType):Observable<any>{
-    return this.http.post(`${this.URL}/vehicleTypes/addVehicleType`,vehicleType).pipe(
+    const token=this.cookie.get('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.URL}/vehicleTypes/addVehicleType`,vehicleType,{headers}).pipe(
       map((dataRow:any)=>{
         return dataRow.vehicleType
       }),

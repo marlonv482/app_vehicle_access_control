@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "app-vehicle-access-control": {
+      "hosting": {
+        "frontend": [
+          "app-vehicle-access-control"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "app-vehicle-access-control"
+  }
+}

@@ -14,60 +14,45 @@ import { SharedService } from '@shared/services/shared.service';
 })
 export class AddVehiclesComponent {
   vehicleTypes: Array<VehicleTypeModel> = [];
-  showInfoModal:boolean=false;
-  formAddVehicle:FormGroup=new FormGroup({});
+  showInfoModal: boolean = false;
+  formAddVehicle: FormGroup = new FormGroup({});
   constructor(
     private vehicleTypesService: VehicleTypesService,
     private vehicleService: VehiclesService,
-    private sharedServices:SharedService
-  ) {
     
-  }
+  ) {}
 
   ngOnInit() {
     this.loadVehicleTypes();
-    this.formAddVehicle=new FormGroup({
-      plate:new FormControl('', [
+    this.formAddVehicle = new FormGroup({
+      plate: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
       ]),
-      vehicleType:new FormControl(2, [
-        Validators.required,
-      ])
-    })
+      vehicleType: new FormControl(2, [Validators.required]),
+    });
   }
   loadVehicleTypes() {
     this.vehicleTypesService.getAllVehicleTypes().subscribe((response) => {
-      response.forEach((vehicleType: VehicleTypeModel)=>{
-        if(vehicleType.vehicle_type!='No Residente'){
-          this.vehicleTypes.push(vehicleType)
-         
+      response.forEach((vehicleType: VehicleTypeModel) => {
+        if (vehicleType.vehicle_type != 'No Residente') {
+          this.vehicleTypes.push(vehicleType);
         }
-      })
-      
+      });
     });
-     
   }
 
-  
-  show() {
-   
-  }
+  show() {}
   hideModal() {
     this.vehicleService.$addVehicleModal.emit(false);
   }
   addVehicle() {
     const vehicle: any = this.formAddVehicle.value;
-    
-    this.vehicleService.addVehicle(vehicle).subscribe(response=>{
-      if(response!=undefined){
-        
-     
-        this.showInfoModal=true;
-      }
-    })
-    
-  }
-  
-}
 
+    this.vehicleService.addVehicle(vehicle).subscribe((response) => {
+      if (response != undefined) {
+        this.showInfoModal = true;
+      }
+    });
+  }
+}

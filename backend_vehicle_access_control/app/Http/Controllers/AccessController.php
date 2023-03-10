@@ -71,7 +71,7 @@ class AccessController extends Controller
             );
     }
     public function getAllIncompleteAccess(){
-        $access=Access::where('to','')->get();
+        $access=Access::where('to','')->orderBy('id', 'desc')->get();
         foreach ($access as $key => $acces) {
             $acces->vehicle=Vehicle::find($acces->vehicle_id);
             $acces->vehicle->vehicle_type=VehicleType::find( $acces->vehicle->vehicle_type_id);
@@ -84,7 +84,7 @@ class AccessController extends Controller
         );
     }
     public function getAllCompleteAccess(){
-        $access=Access::whereDate('to', Carbon::now()->toDateString())->where('to','!=','')->get();
+        $access=Access::whereDate('to', Carbon::now()->toDateString())->where('to','!=','')->orderBy('id', 'desc')->get();
         foreach ($access as $key => $acces) {
             $acces->vehicle=Vehicle::find($acces->vehicle_id);
             $acces->vehicle->vehicle_type=VehicleType::find( $acces->vehicle->vehicle_type_id);

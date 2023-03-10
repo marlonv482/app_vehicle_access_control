@@ -33,9 +33,15 @@ export class DismissAccessComponent {
     this.accessService.dismissVehicle(plate)
     .subscribe(response=>{
       if(response!=null){
-        (response.pay==0)?
+        console.log(response.vehicle.vehicle_type);
+       if (response.vehicle.vehicle_type.vehicle_type=='No Residente'){
+        this.accessService.setRecibo({minutes:response.minutes,pay:response.pay})
+        this.showInfoAccessModal=true
+       }else{
         this.showInfoModal=true
-        :this.accessService.setRecibo({minutes:response.minutes,pay:response.pay}),this.showInfoAccessModal=true
+       }
+      
+       
       }else{
         this.showErrorModal=true;
       }
