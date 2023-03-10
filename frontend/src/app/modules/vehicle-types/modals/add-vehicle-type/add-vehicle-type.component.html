@@ -1,0 +1,70 @@
+<!-- component -->
+
+<div class="modal-container" > 
+    <div *ngIf="showInfoModal"> <app-info-modal /></div> <div
+      class="flex flex-col w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl mx-auto rounded-lg border border-gray-300 shadow-xl"
+    >
+    <form [formGroup]="formAddVehicleType" (ngSubmit)="addVehicleType()">
+      <div
+        class="flex flex-row justify-between p-6 bg-white border-b border-gray-200 rounded-tl-lg rounded-tr-lg"
+      >
+        <p class="font-semibold text-gray-800">Agregar Tipo de Vehiculo</p>
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+       (click)="hideModal()" >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </div>
+      
+  
+      
+      <div class="flex flex-col px-6 py-5 bg-gray-50">
+        <p class="mb-2 font-semibold text-gray-700">Tipo de Vehiculo</p>
+        <input
+          type="text"
+          name=""
+          placeholder="Escribe la Placa..."
+          class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-10"
+          id=""
+         formControlName="vehicle_type"
+        />
+        <div class="flex flex-col sm:flex-row items-center mb-4 sm:space-x-4">
+          <div class="w-full sm:w-full">
+            <p class="mb-2 font-semibold text-gray-700">Precio por Minuto</p>
+            <input
+            type="text"
+            name=""
+            placeholder="Escribe la Placa..."
+            class="p-5 mb-5 bg-white border border-gray-200 rounded shadow-sm h-10"
+            id=""
+           formControlName="price_per_minute"
+          />
+          </div>
+        </div>
+        <hr />
+      </div>
+   
+      <div
+        class="flex flex-row items-center justify-between p-5 bg-white border-t border-gray-200 rounded-bl-lg rounded-br-lg"
+      >
+        <p class="font-semibold text-gray-600" (click)="hideModal()">Cancelar</p>
+      
+        <button class="px-4 py-2 text-white font-semibold bg-blue-500 rounded" [disabled]='formAddVehicleType.invalid'>
+          Agregar
+        </button>
+     
+      </div>
+    </form>
+    </div>
+  
+  </div>
+  

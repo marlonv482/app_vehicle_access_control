@@ -38,7 +38,7 @@ class VehicleTypeController extends Controller
 
         $cut=new Cuts();
         $cut->status=true;
-        $cut->vehicle_typeid=$vehicleType->id;
+        $cut->vehicle_type_id=$vehicleType->id;
         $cut->save();
 
         return response()

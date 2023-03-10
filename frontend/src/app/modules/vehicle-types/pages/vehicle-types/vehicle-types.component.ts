@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { VehicleTypesService } from '@modules/vehicle-types/services/vehicleTypes/vehicle-types.service';
 
 @Component({
   selector: 'app-vehicle-types',
@@ -7,17 +8,27 @@ import { Component } from '@angular/core';
 })
 export class VehicleTypesComponent {
   vehicleTypes:Array<any>=[
-    {
-    vehicleType:"Residente",
-    price:0.05,
-  },
-  {
-    vehicleType:"Oficial",
-    price:0,
-    
-  },{
-    vehicleType:"Externo",
-    price:0.5,
-    
-  }]
+   ]
+   addVehicleTypeModal:boolean=false;
+   constructor(private vehicleTypeService:VehicleTypesService){
+
+   }
+   ngOnInit(){
+    this.vehicleTypeService.getAllVehicleTypes()
+    .subscribe(response=>{
+      this.vehicleTypes=response
+    })
+    this.vehicleTypeService.$addVehicleTypeModal
+    .subscribe(response=>{
+      this.addVehicleTypeModal=response;
+    })
+
+    this.vehicleTypeService.$addVehicleTypeModal.subscribe(responde=>{
+      this.addVehicleTypeModal=responde;
+    })
+   }
+   showAddVehicleTypeModal(){
+    this.addVehicleTypeModal=true;
+   }
+
 }

@@ -1,39 +1,36 @@
 <div class="text-gray-900 bg-gray-200">
+  <div *ngIf="addVehicleTypeModal">
+    <app-add-vehicle-type />
+  </div>
     <div class="flex justify-between items-center px-4 py-2">
         <h1 class="text-3xl">Tipos de Vehículo</h1>
-        <button type="button" class="text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        <button  (click)="showAddVehicleTypeModal()" type="button" class="text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
           Agregar
         </button>
       </div>
       
   
-  <div class="px-3 py-4 flex justify-center">
-    <table class="w-full text-md bg-white shadow-md rounded mb-4">
-      <tbody>
-        <tr class="border-b">
-          <th class="text-left p-3 px-5">Tipo Vehiculo</th>
-          <th class="text-left p-3 px-5">Precio</th>
-         
-          <th></th>
-        </tr>
-        <tr class="border-b hover:bg-orange-100 bg-gray-100" *ngFor="let vehicleType of vehicleTypes">
-          <td class="p-3 px-5">
-            <p>{{vehicleType.vehicleType}}</p>
-          </td>
-          <td class="p-3 px-5">
-            <p>{{vehicleType.price}}</p>
-          </td>
-          <td class="p-3 px-5"></td>
-          <td class="p-3 px-5 flex justify-end">
-            <button
-              type="button"
-              class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-            >
-              Editar</button
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <div class="px-3 py-4 flex justify-center">
+        <table class="w-full text-md bg-white shadow-md rounded mb-4">
+            <tbody>
+                <tr class="border-b">
+                  
+                    <th class="text-left p-3 px-5">Tipo de Vehiculo</th>
+                    <th class="text-left p-3 px-5">Estado</th>
+
+                    
+                </tr>
+                <tr class="border-b hover:bg-orange-100 bg-gray-100" *ngFor="let vehicleType of vehicleTypes">
+                    <td class="p-3 px-5">
+                        <p>{{vehicleType.vehicle_type}}</p>
+                    </td>
+                    <td class="p-3 px-5">
+                        <p>{{vehicleType.price_per_minute}}</p>
+                    </td>
+               
+                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

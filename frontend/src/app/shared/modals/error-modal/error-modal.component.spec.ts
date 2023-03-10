@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddAccessComponent } from './add-access.component';
+import { ErrorModalComponent } from './error-modal.component';
 
-describe('AddAccessComponent', () => {
-  let component: AddAccessComponent;
-  let fixture: ComponentFixture<AddAccessComponent>;
+describe('ErrorModalComponent', () => {
+  let component: ErrorModalComponent;
+  let fixture: ComponentFixture<ErrorModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddAccessComponent ]
+      declarations: [ ErrorModalComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddAccessComponent);
+    fixture = TestBed.createComponent(ErrorModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -15,7 +15,7 @@ constructor(private accessService:AccessService){
    
     this.accessService.getAllIncompleteAccess()
     .subscribe(response=>{
-      console.log(response)
+     
       this.incompleteAccess=response
     })
   }

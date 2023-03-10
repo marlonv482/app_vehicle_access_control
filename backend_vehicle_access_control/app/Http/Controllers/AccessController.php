@@ -25,18 +25,22 @@ class AccessController extends Controller
             $vehicle->save();
         }
         $cut = Cuts::where('vehicle_type_id', $vehicle->vehicle_type_id)->orderBy('id', 'desc')->first();
-        $acces=Access::where('vehicle_type_id', $vehicle->vehicle_type_id)->orderBy('id', 'desc')->first();
-        if($acces->to!=''){
+        $acces=Access::where('vehicle_id', $vehicle->id)->orderBy('id', 'desc')->first();
+       
+        if(is_null($acces) || $acces->to!=''){
             $acces = new Access();
             $acces->vehicle_id = $vehicle->id;
             $acces->from = Carbon::now();
             $acces->to = '';
             $acces->cut_id = $cut->id;
             $acces->save();
+            $acces->vehicle=$vehicle;
+        }else{
+            $acces=null;
         }
         return response()
             ->json(
-                ['vehicle' => $vehicle, 'access' => $acces]
+                [ 'access' => $acces]
             );
     }
     public function dismissVehicle($plate)
@@ -46,18 +50,22 @@ class AccessController extends Controller
         $vehicle_type=VehicleType::find($vehicle->vehicle_type_id);
         
         $acces = Access::where('vehicle_id', $vehicle->id)->orderBy('id', 'desc')->first();
-        if(!is_null($acces)){
+        
+        if(!is_null($acces) && $acces->to==''){
             $acces->to=Carbon::now();
             $acces->save();
             $acces->minutes=ceil((strtotime($acces->to)-strtotime($acces->from))/60);
-            $pay=$acces->minutes*$vehicle_type->price_per_minute;
+            $acces->pay=$acces->minutes*$vehicle_type->price_per_minute;
+            $acces->vehicle=$vehicle;
+            $acces->vehicle->vehicle_type=$vehicle_type;
+        }else{
+            $acces=null;
         }
      
         return response()
             ->json(
                 [
-                    'page' => $pay,
-                    'vehicle' => $vehicle,
+                    
                     'access' => $acces
                 ]
             );

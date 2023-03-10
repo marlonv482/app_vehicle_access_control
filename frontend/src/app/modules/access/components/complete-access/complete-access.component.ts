@@ -15,7 +15,7 @@ export class CompleteAccessComponent {
      
       this.accessService.getAllCompleteAccess()
       .subscribe(response=>{
-        console.log(response)
+       
         this.completeAccess=response
       })
     }

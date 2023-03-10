@@ -15,13 +15,13 @@ import { SharedService } from '@shared/services/shared.service';
 export class AddVehiclesComponent {
   vehicleTypes: Array<VehicleTypeModel> = [];
   showInfoModal:boolean=false;
-    formAddVehicle:FormGroup=new FormGroup({});
+  formAddVehicle:FormGroup=new FormGroup({});
   constructor(
     private vehicleTypesService: VehicleTypesService,
     private vehicleService: VehiclesService,
     private sharedServices:SharedService
   ) {
-    console.log('se crea')
+    
   }
 
   ngOnInit() {
@@ -59,7 +59,6 @@ export class AddVehiclesComponent {
   addVehicle() {
     const vehicle: any = this.formAddVehicle.value;
     
-    console.log(vehicle)
     this.vehicleService.addVehicle(vehicle).subscribe(response=>{
       if(response!=undefined){
         

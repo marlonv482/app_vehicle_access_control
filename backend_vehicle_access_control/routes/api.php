@@ -41,3 +41,11 @@ Route::prefix("access/")->group(function(){
     Route::get('dismissVehicle/{plate}', [App\Http\Controllers\AccessController::class, 'dismissVehicle'])->name('dismissVehicle');
  
 });
+
+Route::prefix("cuts/")->group(function(){
+
+    Route::get('generateCutResident', [App\Http\Controllers\CutsController::class, 'generateCutResident'])->name('generateCutResident');
+    Route::get('generateCutOficial', [App\Http\Controllers\CutsController::class, 'generateCutOficial'])->name('generateCutOficial');
+    Route::get('generateNewMonthCut', [App\Http\Controllers\CutsController::class, 'generateNewMonthCut'])->name('generateNewMonthCut');
+   
+});

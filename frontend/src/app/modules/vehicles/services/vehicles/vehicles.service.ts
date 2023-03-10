@@ -49,7 +49,7 @@ constructor(private http:HttpClient){
   }
   setVehicleSelected(vehicle:VehicleModel){
     this.vehicleSelected=vehicle;
-    console.log( this.vehicleSelected)
+   
   }
   getVehicleSelected(){
     return this.vehicleSelected;
